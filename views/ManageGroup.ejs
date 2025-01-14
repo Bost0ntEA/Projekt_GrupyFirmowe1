@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Create Group</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<h1>Dodaj nową grupę</h1>
+
+<section>
+    <form action="/CompanyPage/<%= companyId %>/CreateGroup" method="POST">
+        <label for="groupName">Nazwa grupy:</label>
+        <input type="text" id="groupName" name="groupName" required>
+        <br>
+        <label for="groupRole">Rola grupy:</label>
+        <input type="text" id="groupRole" name="groupRole" required>
+        <br>
+        <button type="submit">Dodaj</button>
+    </form>
+</section>
+
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+
+<section>
+    <h2>Istniejące grupy</h2>
+    <% if (groups.length > 0) { %>
+        <ul>
+            <% groups.forEach(group => { %>
+                <li>
+                    <section style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p><strong>Nazwa grupy:</strong> <%= group.name %></p>
+                            <p><strong>Rola grupy:</strong> <%= group.role %></p>
+                        </div>
+                        <!-- Link do zarządzania grupą -->
+                        <a href="/CompanyPage/<%= companyId %>/ManageGroup/<%= group.id %>">
+                            <button style="margin-left: auto;">Edytuj</button>
+                        </a>
+                    </section>
+                </li>
+            <% }) %>
+        </ul>
+
+        <!-- Paginacja -->
+        <div class="pagination">
+            <% if (currentPage > 1) { %>
+                <a href="/CompanyPage/<%= companyId %>/ManageGroup?page=<%= currentPage - 1 %>&limit=5">Poprzednia</a>
+            <% } %>
+            <% for (let i = 1; i <= totalPages; i++) { %>
+                <% if (i === currentPage) { %>
+                    <span><strong><%= i %></strong></span>
+                <% } else { %>
+                    <a href="/CompanyPage/<%= companyId %>/ManageGroup?page=<%= i %>&limit=5"><%= i %></a>
+                <% } %>
+            <% } %>
+            <% if (currentPage < totalPages) { %>
+                <a href="/CompanyPage/<%= companyId %>/ManageGroup?page=<%= currentPage + 1 %>&limit=5">Następna</a>
+            <% } %>
+        </div>
+    <% } else { %>
+        <p>Brak grup w tej firmie.</p>
+    <% } %>
+</section>
+
+
+</body>
+</html>

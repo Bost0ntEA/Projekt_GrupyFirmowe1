@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Company Groups</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<section>
+    <h1>Groups for Company: <%= companyName %></h1>
+    <% if (groups.length > 0) { %>
+        <ul>
+            <% groups.forEach(group => { %>
+                <li>
+                    <p><strong>Group Name:</strong> <%= group.nazwagrupy %></p>
+                    <p><strong>Role:</strong> <%= group.rolagrupy %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No groups available for this company.</p>
+    <% } %>
+</section>
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Company Workers</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<h1>Pracownicy firmy: <%= companyName %></h1>
+<section>
+    <% if (workers.length > 0) { %>
+        <ul>
+            <% workers.forEach(worker => { %>
+                <li>
+                    <p><strong>Imię:</strong> <%= worker.name %></p>
+                    <a href="/CompanyPage/<%= companyId %>/CompanyWorkers/<%= worker.id %>">
+                        <button>Edytuj</button>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Brak pracowników w firmie.</p>
+    <% } %>
+</section>
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Edytuj Pracownika</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<h1>Edycja Pracownika</h1>
+    <section>
+        <h2>Edytuj dane pracownika</h2>
+        <form action="/CompanyPage/<%= companyId %>/CompanyWorkers/<%= workerId %>" method="POST">
+            <!-- Pole tekstowe z obecnym imieniem -->
+            <label for="workerName">Imię:</label>
+            <input
+                    type="text"
+                    id="workerName"
+                    name="workerName"
+                    value="<%= workerName %>"
+                    required>
+
+            <!-- Przycisk Zaktualizuj -->
+            <button type="submit">Zaktualizuj</button>
+        </form>
+    </section>
+</body>
+</html>

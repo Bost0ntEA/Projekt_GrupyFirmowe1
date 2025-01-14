@@ -1,0 +1,33 @@
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+
+
+
+// app.get("/CompanyPage/:id/Groups", async (req, res) => {
+//     const companyId = req.params.id;
+//
+//     try {
+//
+//         const companyResult = await pool.query("SELECT Nazwa FROM Firma WHERE IdKontaFirmy = $1", [companyId]);
+//         if (companyResult.rows.length === 0) {
+//             return res.redirect("/login"); // Jeśli brak wyników, przekieruj do logowania
+//         }
+//         const companyName = companyResult.rows[0].nazwa;
+//
+//
+//         const groupsResult = await pool.query(
+//             "SELECT IdGrupy AS id, NazwaGrupy AS name, RolaGrupy AS role FROM Grupa WHERE IdKontaFirmy = $1 AND czyUsunieta = 0",
+//             [companyId]
+//         );
+//         const groups = groupsResult.rows;
+//
+//
+//         res.render("CompanyGroups", { companyName, companyId, groups });
+//     } catch (error) {
+//         console.error("Error fetching company groups:", error);
+//         res.status(500).send("Internal Server Error");
+//     }
+// });

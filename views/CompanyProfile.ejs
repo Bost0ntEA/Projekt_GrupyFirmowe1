@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Company Profile</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<h1>Company: <%= companyName %></h1>
+<section>
+    <!--ZROBIONE-->
+<!--    <button onclick="window.location.href='/CompanyPage/<%= companyId %>/Groups'">Wyświetl grupy</button>-->
+    <!--ZROBIONE-->
+    <button onclick="window.location.href='/CompanyPage/<%= companyId %>/CreateWorker'">Dodaj pracownika</button>
+
+    <button onclick="window.location.href='/CompanyPage/<%= companyId %>/ManageGroup'">Zarządzaj Grupami</button>
+    <button onclick="window.location.href='/CompanyPage/<%= companyId %>/CompanyWorkers'">Wyświetl wszystkich pracowników</button>
+</section>
+</body>
+</html>

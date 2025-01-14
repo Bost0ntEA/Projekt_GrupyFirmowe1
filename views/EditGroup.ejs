@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Edit Group</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<section style="text-align: center; margin-bottom: 20px;">
+    <form action="/CompanyPage/<%= companyId %>/EditGroup/<%= groupId %>/deleteGroup" method="POST">
+        <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Usuń grupę</button>
+    </form>
+</section>
+
+<h1>Edycja grupy: <%= group.name %></h1>
+
+<section style="display: flex; gap: 20px;">
+    <!-- Lewa sekcja -->
+    <div style="flex: 1; border: 1px solid #ccc; padding: 20px;">
+        <h2>Szczegóły grupy</h2>
+        <form action="/CompanyPage/<%= companyId %>/EditGroup/<%= groupId %>/Update" method="POST">
+            <label for="groupName">Nazwa grupy:</label>
+            <input type="text" id="groupName" name="groupName" value="<%= group.name %>" required>
+            <br>
+            <label for="groupRole">Rola grupy:</label>
+            <input type="text" id="groupRole" name="groupRole" value="<%= group.role %>" required>
+            <br>
+            <button type="submit">Aktualizuj dane grupy</button>
+        </form>
+
+        <h2>Przypisani pracownicy</h2>
+        <% if (assignedWorkers.length > 0) { %>
+            <ul>
+                <% assignedWorkers.forEach(worker => { %>
+                    <li><%= worker.name %></li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>Brak przypisanych pracowników.</p>
+        <% } %>
+    </div>
+
+    <!-- Prawa sekcja -->
+    <div style="flex: 1; border: 1px solid #ccc; padding: 20px;">
+        <h2>Dodaj pracowników do grupy</h2>
+        <form action="/CompanyPage/<%= companyId %>/EditGroup/<%= groupId %>/AddWorkers" method="POST">
+            <% allWorkers.forEach(worker => { %>
+                <div>
+                    <input type="checkbox" id="worker_<%= worker.id %>" name="workers[]" value="<%= worker.id %>">
+                    <label for="worker_<%= worker.id %>"><%= worker.name %></label>
+                </div>
+            <% }) %>
+            <button type="submit">Dodaj wybranych pracowników</button>
+        </form>
+    </div>
+</section>
+
+<!-- Usunięcie pracowników -->
+<section style="margin-top: 20px;">
+    <div style="border: 1px solid #ccc; padding: 20px;">
+        <h2>Usuń pracowników z grupy</h2>
+        <form action="/CompanyPage/<%= companyId %>/EditGroup/<%= groupId %>/removeWorkers" method="POST">
+            <% assignedWorkers.forEach(worker => { %>
+                <div>
+                    <input type="checkbox" id="removeWorker_<%= worker.id %>" name="removeWorkers[]" value="<%= worker.id %>">
+                    <label for="removeWorker_<%= worker.id %>"><%= worker.name %></label>
+                </div>
+            <% }) %>
+            <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Usuń wybranych pracowników</button>
+        </form>
+    </div>
+</section>
+
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+</body>
+</html>

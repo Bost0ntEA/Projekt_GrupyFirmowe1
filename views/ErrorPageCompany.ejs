@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Error</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+    <h1>Wystąpił błąd</h1>
+</header>
+<main style="text-align: center; padding: 20px;">
+    <p style="color: red; font-size: 1.5em;"><%= error.message %></p>
+    <section>
+        <a href="/login">
+            <button style="background-color: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                Powrót do logowania
+            </button>
+        </a>
+    </section>
+</main>
+</body>
+</html>

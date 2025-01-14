@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Create Worker</title>
+</head>
+<body>
+<header style="background-color: #f4f4f4; padding: 10px;">
+    <nav style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; cursor: pointer;">Wyloguj</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<h1>Dodaj nowego pracownika</h1>
+<section>
+    <form action="/CompanyPage/<%= companyId %>/CreateWorker" method="POST">
+        <label for="workerName">Imię pracownika:</label>
+        <input type="text" id="workerName" name="workerName" required>
+        <br>
+        <label for="workerLogin">Login pracownika:</label>
+        <input type="text" id="workerLogin" name="workerLogin" required>
+        <label for="workerPassword">Hasło pracownika:</label>
+        <input type="text" id="workerPassword" name="workerPassword" required>
+        <br>
+        <button type="submit">Dodaj</button>
+    </form>
+</section>
+<section>
+    <a href="/CompanyPage/<%= companyId %>/CompanyProfile">
+        <button>Powrót</button>
+    </a>
+</section>
+</body>
+</html>
+<!--ZROBIONE-->
